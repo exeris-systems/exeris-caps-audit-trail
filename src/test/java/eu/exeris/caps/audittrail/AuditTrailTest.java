@@ -178,4 +178,23 @@ class AuditTrailTest {
                 new eu.exeris.caps.audittrail.internal.AuditTrailModule();
         assertThat(internalModule.auditLogSink()).isNotNull();
     }
+
+    @Test
+    @DisplayName("AuditEvent handles null values in details map without NullPointerException")
+    void testNullToleranceInDetails() {
+        Map<String, Object> mapWithNull = new java.util.HashMap<>();
+        mapWithNull.put("title", "Test");
+        mapWithNull.put("summary", null);
+        mapWithNull.put("tags", null);
+
+        AuditEvent event = AuditEvent.builder()
+                .action("CONTENT_CREATED")
+                .resourceType("post")
+                .resourceId("post-1")
+                .details(mapWithNull)
+                .build();
+
+        assertThat(event.details()).containsKey("summary");
+        assertThat(event.details().get("summary")).isNull();
+    }
 }

@@ -40,8 +40,12 @@ public record AuditEvent(
         resourceType = resourceType != null ? resourceType : "";
         resourceId = resourceId != null ? resourceId : "";
         actorId = actorId != null ? actorId : "system";
-        tenantId = tenantId != null ? tenantId : "default";
-        details = details != null ? Map.copyOf(details) : Map.of();
+        if (details != null) {
+            java.util.Map<String, Object> map = new java.util.LinkedHashMap<>(details);
+            details = java.util.Collections.unmodifiableMap(map);
+        } else {
+            details = Map.of();
+        }
     }
 
     public static Builder builder() {
@@ -94,7 +98,12 @@ public record AuditEvent(
         }
 
         public Builder details(Map<String, Object> details) {
-            this.details = details != null ? details : Map.of();
+            if (details != null) {
+                java.util.Map<String, Object> map = new java.util.LinkedHashMap<>(details);
+                this.details = java.util.Collections.unmodifiableMap(map);
+            } else {
+                this.details = Map.of();
+            }
             return this;
         }
 
