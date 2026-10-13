@@ -3,7 +3,7 @@
   "stamp" : {
     "validated" : true,
     "compositionVersion" : "0.0.0",
-    "contentBinding" : "sha256:19b88fe042e1ef105b2321a5d5537f361212ca269a9df65f999b84e63370cbab"
+    "contentBinding" : "sha256:22e61bf64186810668d6b07d641e56272d366520a72dc710277f5f0153759ee1"
   },
   "modules" : [
     {
@@ -14,7 +14,7 @@
         "provides" : [
           {
             "service" : "eu.exeris.caps.audittrail.api.AuditLogSink",
-            "version" : "1.0.0"
+            "version" : "0.1.0"
           }
         ],
         "requires" : [ ],

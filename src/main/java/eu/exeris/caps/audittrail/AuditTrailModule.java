@@ -20,7 +20,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 @CapabilityModule
 @CapabilityLifecycle
-@Provides(service = AuditLogSink.class, version = "1.0.0")
+@Provides(service = AuditLogSink.class, version = "0.1.0")
 public class AuditTrailModule implements CapabilityLifecycleHooks {
 
     private final AuditLogSink auditLogSink;
