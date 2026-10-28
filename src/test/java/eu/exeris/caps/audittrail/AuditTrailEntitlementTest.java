@@ -1,5 +1,6 @@
 package eu.exeris.caps.audittrail;
 
+import eu.exeris.kernel.spi.contract.EntitlementClass;
 import eu.exeris.kernel.spi.contract.EntitlementRequirement;
 import eu.exeris.kernel.tck.contract.AbstractEntitlementRequirementTck;
 import org.junit.jupiter.api.DisplayName;
@@ -34,5 +35,13 @@ class AuditTrailEntitlementTest extends AbstractEntitlementRequirementTck {
     void requiresOnlyItsOwnCapability() {
         assertThat(new AuditTrailEntitlement().requiredCapabilities()).containsExactly("exeris-caps-audit-trail");
         assertThat(AuditTrailEntitlement.CAPABILITY_ID).isEqualTo("exeris-caps-audit-trail");
+    }
+
+    @Test
+    @DisplayName("entitlementClass() is COMMERCIAL and stable across calls")
+    void entitlementClassIsCommercialAndStable() {
+        AuditTrailEntitlement entitlement = new AuditTrailEntitlement();
+        assertThat(entitlement.entitlementClass()).isEqualTo(EntitlementClass.COMMERCIAL);
+        assertThat(entitlement.entitlementClass()).isSameAs(entitlement.entitlementClass());
     }
 }
