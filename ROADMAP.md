@@ -59,4 +59,4 @@ No test asserts the `@Provides` version or that it matches `src/main/generated/j
 
 ### Javadoc gate
 
-The organisation's Javadoc gate is not called from `.github/workflows/guardrails.yml`. The gate installs the module with a plain `mvn install` and passes no token, while this build needs `exeris-kernel` from GitHub Packages. It waits on the gate in `exeris-systems/.github` resolving such dependencies.
+The organisation's Javadoc gate is not called from `.github/workflows/guardrails.yml`. The module's upstreams resolve from Maven Central, but the module depends on `exeris-caps-service-boundary-core` at `0.1.0-SNAPSHOT`, which is published nowhere, and the gate installs the module with a plain `mvn install`. It waits on the gate in `exeris-systems/.github` resolving such a sibling dependency.
